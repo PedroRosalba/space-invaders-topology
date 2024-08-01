@@ -1,8 +1,8 @@
 "use client";
 
 import React, { CSSProperties, Component } from 'react';
-import { PlayerData, Direction, PlayerID } from '../utils/playersData'; // Adjust the import path as necessary
-import Bullet from './bullet'; // Adjust the import path as necessary
+import { PlayerData, Direction, PlayerID } from '../utils/playersData'; /
+import Bullet from './bullet';
 
 interface InvaderProps {
   id: PlayerID;
@@ -22,7 +22,7 @@ interface InvaderState {
   lastShotTime: number;
 }
 
-const shotCooldown = 500; // Cooldown period in milliseconds
+const shotCooldown = 500; 
 
 class Invader extends Component<InvaderProps, InvaderState> {
   private playerData: PlayerData;
@@ -35,7 +35,7 @@ class Invader extends Component<InvaderProps, InvaderState> {
 
     this.playerData = new PlayerData(undefined, props.id, props.initialX, "STOPPED");
     this.bulletIdCounter = 0;
-    this.mapWidth = window.innerWidth; // or get this value from props or context
+    this.mapWidth = window.innerWidth;
 
     this.state = {
       position: this.playerData.position,
@@ -52,7 +52,7 @@ class Invader extends Component<InvaderProps, InvaderState> {
     this.moveInterval = window.setInterval(() => {
       this.updatePosition();
       this.updateBullets();
-    }, 50); // Update position and bullets every 50ms
+    }, 50); 
   }
 
   componentWillUnmount() {
@@ -85,7 +85,7 @@ class Invader extends Component<InvaderProps, InvaderState> {
     if (this.playerData.direction === 'LEFT') {
       this.playerData.updatePosition(Math.max(0, this.playerData.position.x - 5));
     } else if (this.playerData.direction === 'RIGHT') {
-      this.playerData.updatePosition(Math.min(this.mapWidth - 15, this.playerData.position.x + 5)); // Assuming invader width is 15px
+      this.playerData.updatePosition(Math.min(this.mapWidth - 15, this.playerData.position.x + 5));
     }
     this.updateStateFromPlayerData();
   };
@@ -96,7 +96,7 @@ class Invader extends Component<InvaderProps, InvaderState> {
       const { position } = this.state;
       const newBullet: BulletData = {
         id: this.bulletIdCounter++,
-        position: { x: position.x + 7, y: 632 }, // Adjust x to center the bullet, y is at the top of the invader
+        position: { x: position.x + 7, y: 632 }, 
       };
       this.setState((prevState) => ({
         bullets: [...prevState.bullets, newBullet],
@@ -110,7 +110,7 @@ class Invader extends Component<InvaderProps, InvaderState> {
       bullets: prevState.bullets.map((bullet) => ({
         ...bullet,
         position: { ...bullet.position, y: bullet.position.y - 5 },
-      })).filter(bullet => bullet.position.y > 0), // Remove bullets that have left the screen
+      })).filter(bullet => bullet.position.y > 0), 
     }));
   };
 
@@ -131,8 +131,8 @@ class Invader extends Component<InvaderProps, InvaderState> {
       backgroundColor: 'grey',
       position: 'absolute',
       left: `${position.x}px`,
-      bottom: '0px', // Position the invader at the bottom
-      zIndex: 2, // Ensure the invader is above the header
+      bottom: '0px', 
+      zIndex: 2,
     };
 
     return (

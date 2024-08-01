@@ -18,7 +18,6 @@ class SpaceShip extends Component<SpaceShipProps> {
     const bulletWidth = 1;
     const bulletHeight = 5;
 
-    // Simple AABB collision detection
     if (
       bullet.x < x + spaceshipWidth &&
       bullet.x + bulletWidth > x &&
@@ -26,14 +25,14 @@ class SpaceShip extends Component<SpaceShipProps> {
       bullet.y + bulletHeight > y
     ) {
         console.log('test');
-        this.props.onCollision(this.props.id); // Notify parent of collision
+        this.props.onCollision(this.props.id); 
     }
   }
 
   render() {
     const { x, y, alive } = this.props;
     if (!alive) {
-      return null; // Do not render if the spaceship is not alive
+      return null; 
     }
 
     const style: CSSProperties = {

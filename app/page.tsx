@@ -24,7 +24,6 @@ const GameContainer = () => {
       </script> */}
 
       <SpaceShipGrid rows = {blockHeight} columns={blockWeight} direction={"STOPPED"}/>
-      {/* Add more components like Bullets here */}
     </Map>
   );
 };

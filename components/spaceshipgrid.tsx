@@ -2,7 +2,7 @@
 
 import React, { CSSProperties, useEffect, useState, useRef } from 'react';
 import SpaceShip from './spaceship';
-import { Direction } from '../utils/playersData'; // Ensure this import matches your actual Direction type
+import { Direction } from '../utils/playersData'; 
 
 interface SpaceShipGridProps {
   rows: number;
@@ -13,8 +13,8 @@ interface SpaceShipGridProps {
 const gridWidth = 15;
 const gridHeight = 10;
 const gap = 5;
-const velocity = 4; // Movement speed in pixels per frame
-const boundaryPadding = 10; // Padding from container edges to avoid collision
+const velocity = 4; 
+const boundaryPadding = 10; 
 
 const generateSpaceShips = (rows: number, cols: number) => {
   const spaceShips = [];
@@ -41,7 +41,6 @@ const SpaceShipGrid: React.FC<SpaceShipGridProps> = ({ rows, columns, direction 
       setPosition(prevPosition => {
         let newPosition = prevPosition + (movingRight ? velocity : -velocity);
 
-        // Check if the grid needs to reverse direction
         if (newPosition > containerWidth - gridWidthWithGap - boundaryPadding) {
           newPosition = containerWidth - gridWidthWithGap - boundaryPadding;
           setMovingRight(false);
@@ -52,14 +51,14 @@ const SpaceShipGrid: React.FC<SpaceShipGridProps> = ({ rows, columns, direction 
 
         return newPosition;
       });
-    }, 16); // Approximately 60 frames per second
+    }, 16); 
 
     return () => clearInterval(moveInterval);
   }, [movingRight, columns]);
 
   const containerStyle: CSSProperties = {
     position: 'relative',
-    width: '100%', // Make sure container width fits the viewport
+    width: '100%', 
     height: `${rows * (gridHeight + gap)}px`,
     overflow: 'hidden',
   };
@@ -70,7 +69,7 @@ const SpaceShipGrid: React.FC<SpaceShipGridProps> = ({ rows, columns, direction 
     top: '0px',
     width: `${columns * (gridWidth + gap)}px`,
     height: '100%',
-    backgroundColor: 'transparent', // Ensure background is transparent or set to your preference
+    backgroundColor: 'transparent', 
   };
 
   return (
