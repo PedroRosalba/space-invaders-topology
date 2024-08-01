@@ -1,31 +1,10 @@
 import React from 'react';
-import Invader from '../components/invader';
-import Map from '../components/map'; 
-import SpaceShip from '@/components/spaceship';
-import SpaceShipGrid from '../components/spaceshipgrid';
+import Connect from "@/components/connect";
 
-const GameContainer = () => {
-  const lives = 3;
-  const blockWeight = 10;
-  const blockHeight = 6;
-
+const HomePage = () => {
   return (
-    <Map lives={lives}>
-      <Invader id="player1" initialX={50} />
-
-      {/* <script lang = "ts">
-        for (i = 0; i < blockWeight; i++) {
-          for (j=0; j < blockHeight; j++) {
-            const x = col * (gridWidth + gap);
-            const y = row * (gridHeight + gap);
-            spaceShips.push(<SpaceShip key={`${row}-${col}`} x={x} y={y} />);
-          }
-        }
-      </script> */}
-
-      <SpaceShipGrid rows = {blockHeight} columns={blockWeight} direction={"STOPPED"}/>
-    </Map>
+    <Connect></Connect>
   );
 };
 
-export default GameContainer;
+export default HomePage;

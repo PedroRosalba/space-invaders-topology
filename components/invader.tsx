@@ -1,7 +1,7 @@
 "use client";
 
 import React, { CSSProperties, Component } from 'react';
-import { PlayerData, Direction, PlayerID } from '../utils/playersData'; /
+import { PlayerData, Direction, PlayerID } from '../utils/playersData'; 
 import Bullet from './bullet';
 
 interface InvaderProps {
