@@ -18,7 +18,7 @@ const Connect = () => {
         <button id="connect">Connect</button>
         <button id="create">Create Game</button>
       </div>
-      <div id="canvas"></div>
+      <div id="gameboard"></div>
     </div>
   );
 }
