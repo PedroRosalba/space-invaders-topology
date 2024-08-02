@@ -1,6 +1,10 @@
 ## Topology Space Invaders Game
 
-This is a space invaders collaborative game done in the Topology Network. (Edit this readme later...)
+This is a space invaders collaborative game done in the Topology Network. The idea is to handle multiple players in the same game room playing space invaders on collaboration: all the players need to destroy all the ships.
+
+## Specifications
+
+We create a few TopologyObjects, the main of them being the GameBoard, which handles and updates the positions of the players, spaceships, bullets and updates their positions as the game goes. 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
