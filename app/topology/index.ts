@@ -1,13 +1,14 @@
 import { TopologyNode } from "@topology-foundation/node";
 import { fromString as uint8ArrayFromString } from "uint8arrays/from-string";
 import { IGameBoard, GameBoard } from "./objects/gameboard";
+import { Player } from "./objects/player";
 import { GCounter, GSet, PNCounter, TwoPSet } from "@topology-foundation/crdt";
 
 import { handleGameMessages, handleObjectUpdate } from "./handlers";
-import { type Player } from "../../utils/playersData";
 
 // export const OBJECT_ID = "topology::space_invaders";
 // export const PRESENCE_GROUP = "space_invaders::presence";
+//idk how presence works, maybe search for it 
 
 let node: TopologyNode;
 let gameboardCRO: IGameBoard;
@@ -16,8 +17,11 @@ let peers: string[] = [];
 let discoveryPeers: string[] = [];
 let objectPeers: string[] = [];
 
-  
-  //criar uma funcao que inicia depois do node.start() e guarda jogadores
+  // (*)
+  //need to create a function that instantiates a player when he joins the game session
+  //how to do that? how do I know a player joined a game session?
+  //if I do that, I can just append to my GameBoard.players
+
 
   const render = () => {
     const peers_element = <HTMLDivElement>document.getElementById("peers");
@@ -48,14 +52,29 @@ let objectPeers: string[] = [];
       render();
     });
     
-    
-    const handleShoot = (event: KeyboardEvent) => {
+    //functions to make the player and the spaceships to move (and shoot)
+
+    const handleShoot = (player: Player) => (event: KeyboardEvent) => {
       if (event.code === 'Space') {
-        gameboardCRO.shoot(nodeId, ); //how to parse [PNCounter, PNCounter] as str?
+        gameboardCRO.shoot(nodeId, [player.position, new PNCounter(new GCounter({}), new GCounter({}))]);
       }
     };
 
-    document.addEventListener('keydown', handleShoot);
+    document.addEventListener('keydown', handleShoot(gameboardCRO.players[playerId]));
+    //here how do I know that the specific player is pressing the keyboard?
+
+    const createHandlePlayerMove = (player: Player) => (event: KeyboardEvent) => {
+      if (event.key === 'ArrowRight') {
+        gameboardCRO.players[playerId].moveright(nodeId);
+        
+      }
+      if (event.key === 'ArrowLeft') {
+        gameboardCRO.players[playerId].moveleft(nodeId);
+        
+      }
+    };
+    
+    document.addEventListener('keydown', createHandlePlayerMove(playerId));
 
     let create_button = <HTMLButtonElement>document.getElementById("create");
     create_button.addEventListener("click", () => {
@@ -98,6 +117,7 @@ let objectPeers: string[] = [];
       }
     });
   }
+//I guess that the logic to insert a player in the game room is missing  
   
   init();
 }
