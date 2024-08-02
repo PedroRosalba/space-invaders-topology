@@ -7,13 +7,11 @@ const Connect = () => {
   const router = useRouter();
 
   const handleConnectClick = () => {
-    // Add your script logic here
-    router.push('/connect');
+    router.push('/gamepage');
   };
 
   const handleCreateClick = () => {
-    // Add your script logic here
-    router.push('/game');
+    router.push('/gamepage');
   };
 
   return (
@@ -27,7 +25,7 @@ const Connect = () => {
           <input
             id="gameIdInput"
             type="text"
-            placeholder="Insert Game ID"
+            placeholder="Insert Game ID"    
           />
           <button id="connect" onClick={handleConnectClick}>Connect</button>
           <button id="create" onClick={handleCreateClick}>Create Game</button>
